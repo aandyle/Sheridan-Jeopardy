@@ -43,10 +43,10 @@
 		<div class="jumbotron v-center">
 			<div class="container">
 				<div class="row d-flex justify-content-center">
-					<h1>Daily Double!</h1>
+					<h1 class="sheridan-orange">Daily Double!</h1>
 				</div>
 				<div class="row d-flex justify-content-center">
-					<h3>More risk, more reward!</h3>
+					<h3 class="sheridan-lblue">More risk, more reward!</h3>
 				</div>
 				<div class="row d-flex justify-content-center">
 					<h4>Your current score is $<%=p.getScore()%></h4>
@@ -54,8 +54,8 @@
 				
 				<form class="form-inline d-flex justify-content-center" action="DailyDouble" method="post">
 					<label class="sheridan-blue"> Question Value: $</label>
-					<input type="number" name="value" min="0" max="<%=((p.getScore() < 1000) ? 1000 : p.getScore())%>" value="0">
-					<input type="submit" value="Continue">
+					<input type="number" class="form-control mr-sm-3" name="value" min="0" max="<%=((p.getScore() < 1000) ? 1000 : p.getScore())%>" value="0">
+					<input type="submit" value="Continue" class="btn btn-primary">
 				</form>
 			</div>
 		</div>
