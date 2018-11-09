@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import = "com.prog32758.Player" %>
 <%@ page import = "com.prog32758.LoadQuestions" %>
 <%@ page import = "com.prog32758.Question" %>
