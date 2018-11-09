@@ -65,14 +65,14 @@ LoadQuestions lq = (LoadQuestions)session.getAttribute("Questions"); //object th
 		values.put("$1600", 1600);
 		values.put("$2000", 2000);
       	  int val = 400;
-      	  for (int i = 1; i < 6; i++) { %>
+      	  for (int i = 1; i < 6; i++) { %>	<!-- y-axis loop to build game board table -->
       		  <div class="row d-flex justify-content-center">
       		  <%
-      		  for (int j = 1; j < 6; j++) { 
-      			for (Question q : lq.getQuestions()) {	//find corresponding question
-      				if (q.getCategory().equals(categories.get(""+j)) && q.getValue() == values.get("$"+val)) {
-      					if (q.getDisabled().equals("disabled")){ %>
-      						<input type="submit" name="<%=j%>" value="$<%=val%>" class="grid grid-style-disabled col-sm-2" disabled>
+      		  for (int j = 1; j < 6; j++) { 	// x-axis loop to build game board table 
+      			for (Question q : lq.getQuestions()) {	//for each question in LoadQuestions...
+      				if (q.getCategory().equals(categories.get(""+j)) && q.getValue() == values.get("$"+val)) {	//... find the question for this (i,j) position
+      					if (q.getDisabled().equals("disabled")){ %>		<!-- if the question was already selected before... disabled, else enable-->
+      						<input type="submit" name="<%=j%>" value="$<%=val%>" class="grid grid-style-disabled col-sm-2" disabled>	
       						<%
       					} else {
       						%>
@@ -85,7 +85,7 @@ LoadQuestions lq = (LoadQuestions)session.getAttribute("Questions"); //object th
       		  %>
       		  </div>
       		  <%
-      		  val += 400;
+      		  val += 400;	// increase question $$$ value each row
       	  }
       	%>
       </form>

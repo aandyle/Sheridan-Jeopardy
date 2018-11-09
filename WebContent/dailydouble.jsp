@@ -12,8 +12,6 @@
 	<!-- Latest compiled JavaScript -->
 	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-	<script src="script.js"></script>
-
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -41,6 +39,7 @@
 				
 				<form class="form-inline d-flex justify-content-center" action="DailyDouble" method="post">
 					<label class="sheridan-blue"> Question Value: $</label>
+					<!-- if your score is < 1000, max=1000 else max=yourScore -->
 					<input type="number" class="form-control mr-sm-3" name="value" min="0" max="<%=((p.getScore() < 1000) ? 1000 : p.getScore())%>" value="0">
 					<input type="submit" value="Continue" class="btn btn-primary">
 				</form>

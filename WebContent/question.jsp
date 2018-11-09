@@ -16,6 +16,7 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
+  <!-- used to enable answer button after an option is selected -->
   <script src="script.js"></script>
 
   <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -91,7 +92,6 @@ Question q = (Question)session.getAttribute("Question");
       </form>
     </div>
   </div>
-  <!-- <script src="script.js" type="text/javascript"></script> -->
 </body>
 
 </html>
