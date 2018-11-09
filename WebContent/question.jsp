@@ -53,13 +53,13 @@ Question q = (Question)session.getAttribute("Question");
         <div class="row d-flex justify-content-center answers input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <input type="radio" name="answer" id="option" value="<%=q.getA1() %>" onclick="enableBtn()">
+              <input type="radio" name="answer" id="option" value="<%=q.getA1() %>"  required>
             </div>
           </div>
           <h4 class="form-control answers-spacing answers-rounded-right" id="test"><%=q.getA1() %></h4>
           <div class="input-group-prepend">
             <div class="input-group-text answers-rounded-left">
-              <input type="radio" name="answer" id="option" value="<%=q.getA2() %>" onclick="enableBtn()">
+              <input type="radio" name="answer" id="option" value="<%=q.getA2() %>"  required>
             </div>
           </div>
           <h4 class="form-control" id="test2"><%=q.getA2() %></h4>
@@ -68,25 +68,27 @@ Question q = (Question)session.getAttribute("Question");
         <div class="row d-flex justify-content-center input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <input type="radio" name="answer" value="<%=q.getA3() %>" onclick="enableBtn()">
+              <input type="radio" name="answer" value="<%=q.getA3() %>"  required>
             </div>
           </div>
           <h4 class="form-control answers-spacing answers-rounded-right"><%=q.getA3() %></h4>
           <div class="input-group-prepend">
             <div class="input-group-text answers-rounded-left">
-              <input type="radio" name="answer" value="<%=q.getA4() %>" onclick="enableBtn()">
+              <input type="radio" name="answer" value="<%=q.getA4() %>"  required>
             </div>
           </div>
           <h4 class="form-control"><%=q.getA4() %></h4>
         </div>
-
+		
         <div class="row d-flex justify-content-center answers input-group">
        	  <div class="col-sm-6">
+        	<input type="submit" name="continue" id="answer" value="Final Answer" class="btn btn-secondary">
+          </div>
+       	  </form>
+       	  <form action="AnswerSelect" method="post">
+       	  <div>
        		<input type="submit" name="continue" id="skip" value="Skip Question" class="btn btn-secondary">
        	  </div>
-          <div>
-        	<input type="submit" name="continue" id="answer" value="Final Answer" class="btn btn-secondary" disabled>
-          </div>
         </div> 
 
       </form>
