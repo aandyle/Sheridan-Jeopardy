@@ -46,6 +46,7 @@ public class LoadQuestions {
 		questions[23] = new Question("Services", 1600, "You go here to obtain a transcript.", "What is the Office of the Registrar?", "What is the Admissions Office?", "What is the Library?", "What is the Student Advisment Centre?", "What is the Office of the Registrar?");
 		questions[24] = new Question("Services", 2000, "Colour printers are only available at this campus", "What is the Trafalgar campus?", "What is the Hazel McCallion campus?", "What is the Davis campus?", "What is the STC?", "What is the Hazel McCallion campus?");
 		
+		// selects two questions for daily double
 		Random r = new Random();
 		for (int i = 0; i < 2; i++) {
 			int random = r.nextInt(25);

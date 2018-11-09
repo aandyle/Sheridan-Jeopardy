@@ -17,7 +17,8 @@ public class DailyDouble extends HttpServlet {
     public DailyDouble() {
         super();
     }
-
+    
+    //handles changing question $$$ value for daily double
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		RequestDispatcher rd = request.getRequestDispatcher("question.jsp");
