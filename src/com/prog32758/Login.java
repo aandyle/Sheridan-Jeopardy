@@ -25,6 +25,7 @@ public class Login extends HttpServlet {
 		LoadQuestions q = new LoadQuestions();
 		q.load();
 		
+		//load the player and questions into session for tracking
 		HttpSession session = request.getSession();
 		session.setAttribute("Player", p);
 		session.setAttribute("Questions", q);
