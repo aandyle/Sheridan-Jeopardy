@@ -25,13 +25,12 @@ public class AnswerSelect extends HttpServlet {
 		Player p = (Player) session.getAttribute("Player");
 		Question q = (Question) session.getAttribute("Question");
 		LoadQuestions lq = (LoadQuestions) session.getAttribute("Questions");
-		Boolean isFinished = false;
 
 		String button = request.getParameter("continue"); // determine skip or answer btn
 
 		if (button.equals("Skip Question")) { // if skip question...
 			rd = request.getRequestDispatcher(checkGameOver(lq)); 
-			q.setValue(q.getOldValue());	//for board.jsp generator functionality
+			q.setValue(q.getOldValue());	//for board.jsp generator functionality after daily double
 		} else if (button.equals("Final Answer")) { // if answer question...
 			String answer = request.getParameter("answer");
 			if (answer.equals(q.getaCorrect())) {		// ... check if correct
@@ -48,15 +47,13 @@ public class AnswerSelect extends HttpServlet {
 	}
 	
 	protected String checkGameOver(LoadQuestions lq) {
-		String rd = "";
-		for (Question q: lq.getQuestions()) {
-			if (q.getDisabled().equals("disabled")) {
-				rd = "gameover.jsp";
-			} else {
-				rd = "board.jsp";
+		String rd = "gameover.jsp";
+		for (Question q: lq.getQuestions()) {		//check all questions...
+			if (!q.getDisabled().equals("disabled")) {		// ...if question not selected yet 
+				return "board.jsp";							// go back to game board
 			}
 		}
-		return rd;
+		return rd;	//go to gameover page
 	}
 
 }
