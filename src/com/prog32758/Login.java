@@ -1,6 +1,7 @@
 package com.prog32758;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,10 +26,19 @@ public class Login extends HttpServlet {
 		LoadQuestions q = new LoadQuestions();
 		q.load();
 		
+		// list of categories; keys used for buttons
+		HashMap<Integer, String> categories = new HashMap<>();
+		categories.put(1, "Food"); // key, value
+		categories.put(2, "History");
+		categories.put(3, "Facilities");
+		categories.put(4, "Academics");
+		categories.put(5, "Services");
+		
 		//load the player and questions into session for tracking
 		HttpSession session = request.getSession();
 		session.setAttribute("Player", p);
 		session.setAttribute("Questions", q);
+		session.setAttribute("categories", categories);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("board.jsp");
 		rd.forward(request, response);

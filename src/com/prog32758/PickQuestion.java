@@ -3,6 +3,8 @@ package com.prog32758;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,42 +24,38 @@ public class PickQuestion extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("question.jsp");;
-		String category, value;
-		HashMap<String, String> categories = new HashMap<>();
-		categories.put("1", "Food"); // key, value
-		categories.put("2", "History");
-		categories.put("3", "Facilities");
-		categories.put("4", "Academics");
-		categories.put("5", "Services");
-
-		HashMap<String, Integer> values = new HashMap<>();
-		values.put("$400", 400);
-		values.put("$800", 800);
-		values.put("$1200", 1200);
-		values.put("$1600", 1600);
-		values.put("$2000", 2000);
-
+		RequestDispatcher rd = request.getRequestDispatcher("question.jsp");
 		HttpSession session = request.getSession();
-
+		
+		HashMap<Integer, String> categories = (HashMap<Integer,String>)session.getAttribute("categories");
+		
 		LoadQuestions questions = (LoadQuestions) session.getAttribute("Questions");
-
+		
+		Pattern p = Pattern.compile("\\d+");	//regex to convert $xxx to xxx
+		Matcher m;
+		
 		Enumeration en = request.getParameterNames();
 		while (en.hasMoreElements()) {
-			Object obj = en.nextElement(); // get element
-			String param = (String) obj; // get parameter
-			String val = request.getParameter(param); // get parameter value
+			Object obj = en.nextElement(); 				// get parameter name
+			int param = Integer.parseInt((String)obj); 	// get parameter name
+			String sVal = request.getParameter(""+param);	// get parameter value
+			int val = 0; 									// regex store extracted dollar value from question 
+			
+			m = p.matcher(sVal); //regex to convert $xxx to xxx
+			while (m.find()) {
+				val = Integer.parseInt(m.group());
+			}
 
-			category = categories.get(param); // determine category
-			value = val; // determine $$$ value
-
-			for (Question q : questions.getQuestions()) { // find corresponding question; set disabled
-				if (q.getCategory().equals(category) && q.getValue() == values.get(val)) {
+			String category = (String)categories.get(param); // determine category from board.jsp selected button 
+			
+			for (Question q : questions.getQuestions()) { // find corresponding question selected then set disabled
+				if (q.getCategory().equals(category) && q.getValue() == val) {
 					q.setDisabled("disabled");
 					session.setAttribute("Question", q);
 					if (q.getDailyDouble()) {		//isdailydouble?
 						rd = request.getRequestDispatcher("dailydouble.jsp");
 					}
+					break;
 				}
 			}
 		}
